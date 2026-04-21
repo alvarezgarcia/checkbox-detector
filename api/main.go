@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/joho/godotenv"
 )
 
 func detectHandler(w http.ResponseWriter, r *http.Request) {
@@ -50,6 +52,8 @@ func getDetectImageHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	godotenv.Load()
+
 	http.HandleFunc("POST /detect", detectHandler)
 	http.HandleFunc("GET /detect/{id}", getDetectHandler)
 	http.HandleFunc("GET /detect/{id}/image", getDetectImageHandler)
