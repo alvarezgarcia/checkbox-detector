@@ -9,7 +9,11 @@ import (
 )
 
 func jobDir(id string) string {
-	return filepath.Join(os.TempDir(), id)
+	base := os.Getenv("BUCKET_DIR")
+	if base == "" {
+		base = os.TempDir()
+	}
+	return filepath.Join(base, id)
 }
 
 func readJobResult(id string) (DetectResult, error) {

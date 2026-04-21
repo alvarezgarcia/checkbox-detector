@@ -2,7 +2,9 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
+	"os"
 	"strconv"
 
 	"github.com/joho/godotenv"
@@ -55,6 +57,12 @@ func getDetectImageHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	godotenv.Load()
+
+	if bucket := os.Getenv("BUCKET_DIR"); bucket != "" {
+		if _, err := os.Stat(bucket); os.IsNotExist(err) {
+			log.Fatalf("BUCKET_DIR %q does not exist", bucket)
+		}
+	}
 
 	http.HandleFunc("POST /detect", detectHandler)
 	http.HandleFunc("GET /detect/{id}", getDetectHandler)

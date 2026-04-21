@@ -55,7 +55,8 @@ func runDetect(file multipart.File, filename string, debug bool) (DetectResult, 
 
 	var jobDir string
 	if debug {
-		if jobDir, err = os.MkdirTemp("", "checkbox-job-*"); err != nil {
+		base := os.Getenv("BUCKET_DIR")
+		if jobDir, err = os.MkdirTemp(base, "checkbox-job-*"); err != nil {
 			return DetectResult{}, err
 		}
 		args = append(args, jobDir)
