@@ -1,5 +1,7 @@
 import json
 import os
+import sys
+from datetime import datetime
 
 import cv2
 
@@ -12,8 +14,13 @@ def save_job(job_dir, filepath, img, clean, gray, checkboxes, boxes):
     for _, x, y, w, h in checkboxes:
         color = (0, 255, 0) if is_checked(gray, x, y, w, h) else (0, 0, 255)
         cv2.rectangle(annotated, (x, y), (x + w, y + h), color, 2)
+
     cv2.imwrite(os.path.join(job_dir, f"original{ext}"), img)
     cv2.imwrite(os.path.join(job_dir, f"clean{ext}"), clean)
     cv2.imwrite(os.path.join(job_dir, f"annotated{ext}"), annotated)
-    with open(os.path.join(job_dir, "result.json"), "w") as f:
+
+    result_path = os.path.join(job_dir, "result.json")
+    with open(result_path, "w") as f:
         json.dump({"boxes": boxes}, f)
+
+    print(f"[{datetime.now().isoformat()}] result saved to {job_dir}", file=sys.stderr)

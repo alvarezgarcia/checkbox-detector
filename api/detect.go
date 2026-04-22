@@ -65,7 +65,7 @@ func runDetect(file multipart.File, filename string, debug bool) (DetectResult, 
 	cmd := exec.Command(pythonBin(), args...)
 
 	var stderr bytes.Buffer
-	cmd.Stderr = &stderr
+	cmd.Stderr = io.MultiWriter(os.Stderr, &stderr)
 
 	var data []byte
 
