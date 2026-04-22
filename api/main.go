@@ -64,8 +64,15 @@ func main() {
 		}
 	}
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	log.Printf("starting on port %s (pid %d)", port, os.Getpid())
+
 	http.HandleFunc("POST /detect", detectHandler)
 	http.HandleFunc("GET /detect/{id}", getDetectHandler)
 	http.HandleFunc("GET /detect/{id}/image", getDetectImageHandler)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":"+port, nil)
 }
