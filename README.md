@@ -9,7 +9,7 @@ The system is split into two components:
 - **Go API** (`api/`) - HTTP server that handles requests, manages job lifecycle, and invokes the detection engine
 - **Python detection engine** (`vision/`) - OpenCV-based script that processes images, finds checkbox candidates, and classifies them as checked or unchecked
 
-The Go server calls the Python script as a subprocess per request, passing the image path and receiving results as JSON. The reasoning behind this architectural decision is documented in `DECISIONS.md`.
+The Go server calls the Python script as a subprocess per request, passing the image path (it was previously saved and removed after the process) and receiving results as JSON. The reasoning behind this architectural decision is documented in `DECISIONS.md`.
 
 ## How it works
 
@@ -19,6 +19,25 @@ The Go server calls the Python script as a subprocess per request, passing the i
 4. Results are returned as JSON with bounding boxes and checked state
 
 ## Setup
+
+### Local development
+
+**Python**
+```bash
+cd vision
+python3 -m venv venv
+venv/bin/pip install -r requirements.txt
+```
+
+**Go**
+```bash
+cd api
+cp .env.sample .env
+# set PYTHON_BIN=../vision/venv/bin/python in .env
+air
+```
+
+### Production
 
 **Python**
 ```bash
@@ -99,8 +118,15 @@ The Python detection engine has no environment configuration — all tuning valu
 ## Running tests
 
 **Python detection engine**
+
+Install dev dependencies first:
 ```bash
 cd vision
+venv/bin/pip install -r requirements-dev.txt
+```
+
+Then run:
+```bash
 ./tests/run_tests.sh
 ```
 
