@@ -58,6 +58,26 @@ curl -X POST https://api.yourdomain.com/detect -F "image=@document.jpg"
 }
 ```
 
+With `?debug=true`:
+
+```bash
+curl -X POST "https://api.yourdomain.com/detect?debug=true" -F "image=@document.jpg"
+```
+
+```json
+{
+  "boxes": [
+    { "bbox": [10, 20, 35, 45], "is_checked": true },
+    { "bbox": [10, 60, 35, 85], "is_checked": false }
+  ],
+  "debug": {
+    "detection_job_id": "checkbox-job-1234567890"
+  }
+}
+```
+
+The `detection_job_id` can then be used to retrieve the results and annotated image via the `GET` endpoints.
+
 ### `GET /detect/{id}`
 
 Retrieve results for a previous job. Requires `?debug=true` on the original request.
