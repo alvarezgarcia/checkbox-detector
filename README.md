@@ -35,6 +35,8 @@ The Go server calls the Python script as a subprocess per request, passing the i
 
 ## Setup
 
+OpenCV must be installed on the system before installing the Python dependencies. On macOS: `brew install opencv`. On Ubuntu: `sudo apt install python3-opencv`.
+
 ### Local development
 
 **Python**
