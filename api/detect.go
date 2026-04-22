@@ -11,14 +11,14 @@ import (
 	"path/filepath"
 )
 
-const pythonScript = "../vision/main.py"
-
 func pythonBin() string {
 	if bin := os.Getenv("PYTHON_BIN"); bin != "" {
 		return bin
 	}
 	return "python3"
 }
+
+const pythonScript = "../vision/main.py"
 
 type Box struct {
 	BBox      [4]int `json:"bbox"`

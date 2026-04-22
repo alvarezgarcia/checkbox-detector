@@ -1,19 +1,15 @@
 package main
 
 import (
+	"image"
+	_ "image/jpeg"
+	_ "image/png"
 	"io"
 	"mime/multipart"
-	"net/http"
-	"strings"
 )
 
 func isImage(file multipart.File) bool {
-	buf := make([]byte, 512)
-	_, err := file.Read(buf)
-	if err != nil {
-		return false
-	}
+	_, _, err := image.DecodeConfig(file)
 	file.Seek(0, io.SeekStart)
-	mime := http.DetectContentType(buf)
-	return strings.HasPrefix(mime, "image/")
+	return err == nil
 }

@@ -44,3 +44,4 @@ The debug job ID and GET endpoints already hint at this shape: the main missing 
 - No authentication on any endpoint
 - The detection constants (area bounds, aspect ratio, fill ratio threshold) were tuned for a specific document style and may not work well on documents with different checkbox sizes or layouts
 - Scanned images with noise, skew, or low resolution will produce less reliable results
+- The path to the Python script is hardcoded as a relative path and assumes the binary is run from the `api/` directory
