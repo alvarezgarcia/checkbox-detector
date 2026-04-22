@@ -54,6 +54,21 @@ go build -o checkbox-detector .
 ./checkbox-detector
 ```
 
+## Demo
+
+The API is live at `https://checkbox-detector.api.alvarezgarcia.dev`. Please read the API section below to learn more about the available endpoints and parameters.
+
+```bash
+# Detect checkboxes
+POST https://checkbox-detector.api.alvarezgarcia.dev/detect
+
+# Retrieve results for a job
+GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}
+
+# Retrieve annotated image for a job
+GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}/image
+```
+
 ## API
 
 Only `POST /detect` was required by the challenge. A `?debug=true` flag was added to extend it: when present, it stores the original, clean, and annotated images on disk and returns a `detection_job_id` to retrieve them later. `GET /detect/{id}` and `GET /detect/{id}/image` were then added to expose the JSON results and the annotated image via API. The other files stored in the job directory (original and clean images) are only accessible via direct filesystem access, intended for hypothetical manual review by an operator.
