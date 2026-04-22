@@ -88,13 +88,13 @@ Retrieve the annotated image for a previous job. Requires `?debug=true` on the o
 
 ## Configuration
 
-The Python detection engine has no environment configuration — all tuning values are constants in the source code.
-
 The Go API reads the following variables from `api/.env`:
 
 `PYTHON_BIN` - Path to the Python interpreter. Defaults to `python3`. For local development, point this to the venv interpreter: `../vision/venv/bin/python`.
 
 `BUCKET_DIR` - Directory for storing job files. Defaults to the OS temp dir.
+
+The Python detection engine has no environment configuration — all tuning values are constants in the source code.
 
 ## Running tests
 
