@@ -80,7 +80,7 @@ Upload an image and detect checkboxes.
 `?debug=true` stores original, clean, and annotated images in the job directory and returns a `detection_job_id`.
 
 ```bash
-curl -X POST https://api.yourdomain.com/detect -F "image=@document.jpg"
+curl -X POST http://localhost:8080/detect -F "image=@document.jpg"
 ```
 
 ```json
@@ -95,7 +95,7 @@ curl -X POST https://api.yourdomain.com/detect -F "image=@document.jpg"
 With `?debug=true`:
 
 ```bash
-curl -X POST "https://api.yourdomain.com/detect?debug=true" -F "image=@document.jpg"
+curl -X POST "http://localhost:8080/detect?debug=true" -F "image=@document.jpg"
 ```
 
 ```json
