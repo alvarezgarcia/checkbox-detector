@@ -2,6 +2,21 @@
 
 A REST API that detects and classifies checkboxes in document images.
 
+## Demo
+
+The API is live at `https://checkbox-detector.api.alvarezgarcia.dev`. Please read the API section below to learn more about the available endpoints and parameters.
+
+```bash
+# Detect checkboxes
+POST https://checkbox-detector.api.alvarezgarcia.dev/detect
+
+# Retrieve results for a job
+GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}
+
+# Retrieve annotated image for a job
+GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}/image
+```
+
 ## Architecture
 
 The system is split into two components:
@@ -52,21 +67,6 @@ cd api
 cp .env.sample .env
 go build -o checkbox-detector .
 ./checkbox-detector
-```
-
-## Demo
-
-The API is live at `https://checkbox-detector.api.alvarezgarcia.dev`. Please read the API section below to learn more about the available endpoints and parameters.
-
-```bash
-# Detect checkboxes
-POST https://checkbox-detector.api.alvarezgarcia.dev/detect
-
-# Retrieve results for a job
-GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}
-
-# Retrieve annotated image for a job
-GET https://checkbox-detector.api.alvarezgarcia.dev/detect/{id}/image
 ```
 
 ## API
